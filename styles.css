@@ -4,6 +4,9 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background-image: url(img/fondoMarinoDibujo.jpeg);
+  background-size: cover;
 }
 
 .container {
@@ -20,30 +23,37 @@ body {
   justify-content: center;
   text-align: center;
   padding: 20px;
-  border: 2px solid #ccc;
+  border: 1px solid #462000;
   margin: 10px;
   height: 30vh;
   width: 30vh;
+  background-color: aqua;
+  box-shadow: 0 0 5px black;
+}
+
+.startContainer {
+  margin-top: 10%;
 }
 
 #gameWrapper{
   height: 40vh;
-  width: 40vh
-}
-
-.userForm, .clickBox {
-  margin-top: 10px;
+  width: 40vh;
+  background-color: none;
+  margin-top: 10%;
 }
 
 /* Estilos específicos para el ranking */
 .rankingTitle {
-  margin-bottom: 10px;
+  margin-bottom: 5%;
+  font-size: 200%;
 }
 
 .rankingList {
+  font-size: 150%;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  margin-bottom: 10%;
 }
 
 .rankingList li {
@@ -54,13 +64,53 @@ body {
   display: flex; 
   align-items: center;
   justify-content: center;
-  background-color: blue;
-  color: white;
-  margin-left: 3vh;
+  background-image: url(img/pez2clickcount.png);
+  background-size: cover;
+  background-color: aqua; /* Agregar el color de fondo del contenedor */
+  margin-left: 2%;
   position: absolute;
-  width: 4%;
-  height: 4%;
-  margin-top: 5vh;
-
+  width: 6%;
+  height: 8%;
+  margin-top: 2%;
+  cursor: url(img/Fishing\ Rod\ \(Help\ Select\).cur), auto;
 }
 
+.startButton{
+  margin-top: 10%;
+  background-color: #ff8c00; 
+  color: #fff; 
+  padding: 3% 6%; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.startGameButton {
+  background-color: #ff8c00; 
+  color: #fff; 
+  padding: 3% 6%; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+@media screen and (max-width: 360px) {
+  .clickBox {
+    width: 50px; /* Ajustar el ancho en porcentaje para pantallas pequeñas */
+    height: 40px; /* Ajustar el alto en porcentaje para pantallas pequeñas */
+    left: 5%; /* Ajustar el margen izquierdo en porcentaje para pantallas pequeñas */
+    top: 20%; /* Ajustar el margen superior en porcentaje para pantallas pequeñas */
+  }
+  .rankingTitle {
+    margin-bottom: 5%;
+    font-size: 200%;
+  }
+  
+  .rankingList {
+    font-size: 150%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 30%;
+  }
+}

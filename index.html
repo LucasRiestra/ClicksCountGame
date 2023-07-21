@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clicks en 10 segundos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,24 +16,26 @@
   <div class="container">
     <div id="gameWrapper" class="hidden">
       <button id="startGameButton" class="startGameButton">Play</button>
-      <div id="clickBox" class="clickBox">Click Here</div>
+      <div id="clickBox" class="clickBox"></div>
       <p id="result"></p>
     </div>
     <div class="startContainer">
       <form id="usernameForm" class="userForm">
         <h2>Choose your name</h2>
-        <label for="username" class="username">User name:</label>
+        <label for="username" class="username">User name:</label> 
+        <br>
         <input type="text" id="username" required class="inputName">
+        <br>
         <button type="submit" id="startButton" class="startButton">Start</button>
       </form>
     </div>
     <div id="ranking" class="ranking">
       <h2 class="rankingTitle">Ranking</h2>
       <ul id="rankingList" class="rankingList">
-        <li>Ignacio 20 clicks</li>
-        <li>Andrea 14 clicks</li>
-        <li>Aaron 8 clicks</li>
-        <li>Michele 5 clicks</li>
+        <li>Ignacio 20 catches</li>
+        <li>Andrea 14 catches</li>
+        <li>Aaron 8 catches</li>
+        <li>Michele 5 catches</li>
       </ul>
     </div>
   </div>
