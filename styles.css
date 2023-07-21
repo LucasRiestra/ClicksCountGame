@@ -1,0 +1,66 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.startContainer, #gameWrapper, #ranking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ccc;
+  margin: 10px;
+  height: 30vh;
+  width: 30vh;
+}
+
+#gameWrapper{
+  height: 40vh;
+  width: 40vh
+}
+
+.userForm, .clickBox {
+  margin-top: 10px;
+}
+
+/* Estilos específicos para el ranking */
+.rankingTitle {
+  margin-bottom: 10px;
+}
+
+.rankingList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rankingList li {
+  margin: 5px;
+}
+
+.clickBox {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  color: white;
+  margin-left: 3vh;
+  position: absolute;
+  width: 4%;
+  height: 4%;
+  margin-top: 5vh;
+
+}
+
