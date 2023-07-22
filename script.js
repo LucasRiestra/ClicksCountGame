@@ -110,5 +110,3 @@ if (storedRanking) {
   const currentScores = JSON.parse(storedRanking);
   createRanking(currentScores);
 }
-
-localStorage.clear();
