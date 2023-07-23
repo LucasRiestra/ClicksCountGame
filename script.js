@@ -1,4 +1,3 @@
-// Get Elements!
 const startContainer = document.querySelector(".startContainer");
 const usernameForm = document.getElementById("usernameForm");
 const startButton = document.getElementById("startButton");
@@ -8,11 +7,10 @@ const ranking = document.getElementById("ranking");
 const rankingList = document.getElementById("rankingList");
 const scoreSection = document.getElementById("scoreSection");
 const playAgainButton = document.getElementById("playAgainButton"); 
+let clickCount = 0; // Variable para almacenar el número de clics
+let timer; // Variable para almacenar el temporizador
 
-let clickCount = 0; 
-let timer; 
-
-gameWrapper.style.display = "none"; 
+gameWrapper.style.display = "none"; // Ocultar el div del juego al inicio
 scoreSection.style.display = "none";
 
 usernameForm.addEventListener("submit", function (event) {
@@ -21,15 +19,10 @@ usernameForm.addEventListener("submit", function (event) {
   showGame(username);
 });
 
-//Functions!!
-
-//Show Game and play game!!
-
 function showGame(username) {
-
-  startContainer.style.display = "none"; 
-  ranking.style.display = "block"; 
-  gameWrapper.style.display = "block"; 
+  startContainer.style.display = "none"; // Ocultar el div del formulario
+  ranking.style.display = "block"; // Mostrar el div del ranking
+  gameWrapper.style.display = "block"; // Mostrar el juego
 
   startButton.addEventListener("click", startGame);
   document.getElementById("result").textContent = "Catch the fish as many times as you can!";
@@ -37,14 +30,12 @@ function showGame(username) {
   const startAgainButton = document.getElementById("startGameButton");
   startAgainButton.addEventListener("click", startGame);
 
-  playAgainButton.addEventListener("click", playAgain); 
-
   function startGame() {
-    clickCount = 0; 
+    clickCount = 0; // Reiniciar el contador de clics
     document.getElementById("result").textContent = "Catch the fish as many times as you can!";
     clickBox.addEventListener("click", countClick);
     moveBox();
-    clearTimeout(timer);
+    clearTimeout(timer); // Reiniciar el temporizador si se presiona "Start Again"
     timer = setTimeout(endGame, 10000);
   }
 
@@ -66,48 +57,48 @@ function showGame(username) {
     updateRanking(username, clickCount);
     showFinalScore();
   }
+}
 
-  function getRandomOffset(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+function getRandomOffset(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-  //Update Ranking!!
+function updateRanking(username, clickCount) {
+  const currentScores = Array.from(rankingList.children).map((li) => {
+    const [name, score] = li.textContent.split(" ");
+    return { name, score: parseInt(score) }; // Asegurar que se obtiene un número válido
+  });
 
-  function updateRanking(username, clickCount) {
-    const currentScores = Array.from(rankingList.children).map((li) => {
-      const [name, score] = li.textContent.split(" ");
-      return { name, score: parseInt(score) }; 
-    });
+  // Buscar si el usuario ya existe en el ranking
+  const userScoreIndex = currentScores.findIndex((score) => score.name === username);
 
-
-    const userScoreIndex = currentScores.findIndex((score) => score.name === username);
-
-    if (userScoreIndex !== -1) {
-      // Si el usuario ya existe, reemplazar su puntuación si es más alta
-      if (clickCount > currentScores[userScoreIndex].score) {
-        currentScores[userScoreIndex].score = clickCount;
-      }
-    } else {
-      // Si el usuario no existe en el ranking y el ranking no está lleno, agregarlo
-      if (currentScores.length < 4) {
-        currentScores.push({ name: username, score: clickCount });
-      } else {
-        // Si el ranking está lleno, reemplazar al usuario con la puntuación más baja
-        const lowestScoreIndex = currentScores.findIndex((score) => score.score === Math.min(...currentScores.map((s) => s.score)));
-        currentScores[lowestScoreIndex] = { name: username, score: clickCount };
-      }
+  if (userScoreIndex !== -1) {
+    // Si el usuario ya existe, reemplazar su puntuación si es más alta
+    if (clickCount > currentScores[userScoreIndex].score) {
+      currentScores[userScoreIndex].score = clickCount;
     }
-
-    // Ordenar en orden descendente por el número de clics
-    currentScores.sort((a, b) => b.score - a.score);
-
-    // Limitar el ranking a un máximo de 4 usuarios
-    const limitedScores = currentScores.slice(0, 4);
-
-    // Mostrar el ranking actualizado
-    createRanking(limitedScores);
-
+  } else {
+    // Si el usuario no existe en el ranking y el ranking no está lleno, agregarlo
+    if (currentScores.length < 4) {
+      currentScores.push({ name: username, score: clickCount });
+    } else {
+      // Si el ranking está lleno, reemplazar al usuario con la puntuación más baja
+      const lowestScoreIndex = currentScores.findIndex((score) => score.score === Math.min(...currentScores.map((s) => s.score)));
+      currentScores[lowestScoreIndex] = { name: username, score: clickCount };
+    }
   }
+
+  // Ordenar en orden descendente por el número de clics
+  currentScores.sort((a, b) => b.score - a.score);
+
+  // Limitar el ranking a un máximo de 4 usuarios
+  const limitedScores = currentScores.slice(0, 4);
+
+  // Mostrar el ranking actualizado
+  createRanking(limitedScores);
+
+  localStorage.setItem("rankingData", JSON.stringify(limitedScores));
+  
 }
 
 function createRanking(scores) {
@@ -123,18 +114,7 @@ const storedRanking = localStorage.getItem("rankingData");
 if (storedRanking) {
   const currentScores = JSON.parse(storedRanking);
   createRanking(currentScores);
-} else {
-  // Si no hay datos en el localStorage, mostramos la lista por defecto
-  const defaultScores = [
-    { name: "Ignacio", score: 20 },
-    { name: "Andrea", score: 14 },
-    { name: "Aaron", score: 8 },
-    { name: "Michele", score: 5 },
-  ];
-  createRanking(defaultScores);
 }
-
-localStorage.getItem("rankingData", rankingList)
 
 function showFinalScore() {
   gameWrapper.style.display = "none"; // Ocultar el div del juego
@@ -145,14 +125,11 @@ function showFinalScore() {
   document.getElementById("userScore").textContent = `You caught the fish ${clickCount} times in 10 seconds!!!`; // Mostrar el puntaje del jugador
 }
 
+playAgainButton.addEventListener("click", playAgain); 
+
 function playAgain() {
   scoreSection.style.display = "none"; // Ocultar el div "Your Score!"
   gameWrapper.style.display = "block"; // Mostrar el div del juego nuevamente
-  clickCount = 0; // Reiniciar el contador de clics
   document.getElementById("result").textContent = "Catch the fish as many times as you can!";
   moveBox();
-  clearTimeout(timer); // Reiniciar el temporizador
-  timer = setTimeout(endGame, 10000);
 }
-
-//localStorage.clear();
