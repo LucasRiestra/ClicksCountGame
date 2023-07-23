@@ -42,7 +42,7 @@ body {
   margin-top: 10%;
 }
 
-/* Estilos específicos para el ranking */
+
 .rankingTitle {
   margin-bottom: 5%;
   font-size: 200%;
@@ -66,7 +66,7 @@ body {
   justify-content: center;
   background-image: url(img/pez2clickcount.png);
   background-size: cover;
-  background-color: aqua; /* Agregar el color de fondo del contenedor */
+  background-color: aqua; 
   margin-left: 2%;
   position: absolute;
   width: 6%;
@@ -94,12 +94,33 @@ body {
   cursor: pointer; 
 }
 
+#scoreSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #462000;
+  margin: 10px;
+  height: 30vh;
+  width: 30vh;
+  background-color: aqua;
+  box-shadow: 0 0 5px black;
+}
+
+#ranking {
+  margin-top: 10px; 
+}
+
+/* Responsive */
+
 @media screen and (max-width: 360px) {
   .clickBox {
-    width: 50px; /* Ajustar el ancho en porcentaje para pantallas pequeñas */
-    height: 40px; /* Ajustar el alto en porcentaje para pantallas pequeñas */
-    left: 5%; /* Ajustar el margen izquierdo en porcentaje para pantallas pequeñas */
-    top: 20%; /* Ajustar el margen superior en porcentaje para pantallas pequeñas */
+    width: 50px; 
+    height: 40px; 
+    left: 5%; 
+    top: 20%; 
   }
   .rankingTitle {
     margin-bottom: 5%;
